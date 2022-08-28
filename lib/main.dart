@@ -20,7 +20,7 @@ final lightTheme = ThemeData(
   primarySwatch: Colors.pink,
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
-      foregroundColor: MaterialStateProperty.all(kBackgroundColor),
+      foregroundColor: MaterialStateProperty.all(Colors.white),
     ),
   ),
   textTheme: GoogleFonts.notoSansTextTheme(),
@@ -34,7 +34,7 @@ final darkTheme = ThemeData(
   iconTheme: IconThemeData(color: Colors.grey[400]),
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
-      foregroundColor: MaterialStateProperty.all(Colors.white),
+      foregroundColor: MaterialStateProperty.all(Colors.black),
     ),
   ),
   textTheme: GoogleFonts.notoSansTextTheme(),

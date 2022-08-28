@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hoc081098_portfolio/utils/globals.dart';
 import 'package:hoc081098_portfolio/utils/screen_helper.dart';
 import 'package:hoc081098_portfolio/widgets/header.dart';
+import 'package:hoc081098_portfolio/widgets/home_info.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -61,15 +62,12 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 SizedBox(
                   height: ScreenHelper.isDesktop(context)
-                      ? 30
+                      ? 100
                       : ScreenHelper.isTablet(context)
-                          ? 70
-                          : 20,
+                          ? 100
+                          : 90,
                 ),
-                Container(
-                  height: 1000,
-                  color: Colors.green,
-                ),
+                const HomeInfo(),
                 Container(
                   height: 2000,
                   color: Colors.red,

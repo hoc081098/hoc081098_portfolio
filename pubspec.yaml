@@ -38,6 +38,8 @@ dependencies:
 
   google_fonts: ^3.0.1
   responsive_framework: ^0.2.0
+  url_launcher: ^6.1.5
+  flutter_svg: ^1.1.4
 
   flutter_provider: ^2.1.0
   rx_shared_preferences: ^3.0.0

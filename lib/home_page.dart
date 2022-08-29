@@ -26,6 +26,19 @@ class _MyHomePageState extends State<MyHomePage> {
             ? 100
             : 90;
 
+    final builders = [
+      () => SizedBox(
+            height: headerHeight,
+            key: homeBloc.homeKey,
+          ),
+      () => const HomeInfo(),
+      () => SizedBox(
+            height: headerHeight,
+            key: homeBloc.aboutKey,
+          ),
+      () => const AboutSection(),
+    ];
+
     return Scaffold(
       key: Globals.shared.scaffoldKey,
       endDrawer: Drawer(
@@ -75,22 +88,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Stack(
         children: [
           Positioned.fill(
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: headerHeight,
-                    key: homeBloc.homeKey,
-                  ),
-                  const HomeInfo(),
-                  SizedBox(
-                    height: headerHeight,
-                    key: homeBloc.aboutKey,
-                  ),
-                  const AboutSection(),
-                ],
-              ),
+            child: ListView.builder(
+              itemCount: builders.length,
+              itemBuilder: (context, index) => builders[index](),
             ),
           ),
           const Positioned(

@@ -77,7 +77,7 @@ class _AboutSection extends StatelessWidget {
                   flex: maxWidth > 720.0 ? 1 : 0,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       const SizedBox(
                         height: 15.0,
@@ -125,29 +125,23 @@ class _AboutSection extends StatelessWidget {
                       const SizedBox(
                         height: 10.0,
                       ),
-                      ScrollConfiguration(
-                        behavior: ScrollConfiguration.of(context)
-                            .copyWith(scrollbars: false),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              for (final e in technologyLearned)
-                                MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: RxStreamBuilder<ThemeMode>(
-                                    stream:
-                                        context.bloc<ThemeBloc>().themeMode$,
-                                    builder: (context, themeMode) =>
-                                        _TechnologyItem(
-                                      technology: e,
-                                      themeMode: themeMode,
-                                    ),
-                                  ),
-                                )
-                            ],
-                          ),
-                        ),
+                      Wrap(
+                        spacing: 5,
+                        runSpacing: 5,
+                        children: [
+                          for (final e in technologyLearned)
+                            MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: RxStreamBuilder<ThemeMode>(
+                                stream: context.bloc<ThemeBloc>().themeMode$,
+                                builder: (context, themeMode) =>
+                                    _TechnologyItem(
+                                  technology: e,
+                                  themeMode: themeMode,
+                                ),
+                              ),
+                            ),
+                        ],
                       ),
                       const SizedBox(
                         height: 70.0,
@@ -194,30 +188,31 @@ class _TechnologyItem extends StatelessWidget {
             themeMode == ThemeMode.dark ? Colors.grey[800] : Colors.grey[200],
         borderRadius: BorderRadius.circular(6.0),
       ),
-      margin: const EdgeInsets.symmetric(horizontal: 5),
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6),
       child: InkWell(
         onTap: () {},
-        child: Center(
-          child: Row(
-            children: [
-              SizedBox(
-                width: 20,
-                height: 20,
-                child: Image.asset(technology.logo),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: 20,
+              height: 20,
+              child: Image.asset(technology.logo),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Text(
+              technology.name,
+              maxLines: 1,
+              style: const TextStyle(
+                fontSize: 12.0,
+                fontWeight: FontWeight.bold,
               ),
-              const SizedBox(
-                width: 10,
-              ),
-              Text(
-                technology.name,
-                style: const TextStyle(
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

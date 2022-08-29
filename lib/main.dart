@@ -11,7 +11,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 const Color kPrimaryColor = Color(0xFF7d1c4e);
 const Color kBackgroundColor = Color.fromRGBO(7, 17, 26, 1);
 const Color kDangerColor = Color.fromARGB(255, 243, 22, 22);
-const Color kCaptionColor = Color.fromRGBO(166, 177, 187, 1);
+const Color kCaptionColor = Color(0xFF7F8C93);
 
 final lightTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,

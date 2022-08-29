@@ -4,6 +4,7 @@ import 'package:hoc081098_portfolio/widgets/header.dart';
 
 class HomeBloc implements BaseBloc {
   final homeKey = GlobalKey();
+  final aboutKey = GlobalKey();
 
   @override
   void dispose() {}
@@ -11,10 +12,14 @@ class HomeBloc implements BaseBloc {
   void scrollTo(HeaderItem item) {
     if (item.title == 'Home') {
       scrollToHome();
+    } else if (item.title == 'About') {
+      scrollToAbout();
     }
   }
 
   void scrollToHome() => _scroll(homeKey.currentContext);
+
+  void scrollToAbout() => _scroll(aboutKey.currentContext);
 
   void _scroll(BuildContext? context) {
     if (context == null) {

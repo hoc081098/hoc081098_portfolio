@@ -3,6 +3,7 @@ import 'package:flutter_provider/flutter_provider.dart';
 import 'package:hoc081098_portfolio/home_bloc.dart';
 import 'package:hoc081098_portfolio/utils/globals.dart';
 import 'package:hoc081098_portfolio/utils/screen_helper.dart';
+import 'package:hoc081098_portfolio/widgets/about.dart';
 import 'package:hoc081098_portfolio/widgets/header.dart';
 import 'package:hoc081098_portfolio/widgets/home_info.dart';
 import 'package:hoc081098_portfolio/widgets/theme_switcher.dart';
@@ -18,6 +19,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final homeBloc = context.get<HomeBloc>();
+
+    final double headerHeight = ScreenHelper.isDesktop(context)
+        ? 100
+        : ScreenHelper.isTablet(context)
+            ? 100
+            : 90;
 
     return Scaffold(
       key: Globals.shared.scaffoldKey,
@@ -74,19 +81,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: ScreenHelper.isDesktop(context)
-                        ? 100
-                        : ScreenHelper.isTablet(context)
-                            ? 100
-                            : 90,
-                  ),
-                  HomeInfo(
+                    height: headerHeight,
                     key: homeBloc.homeKey,
                   ),
-                  Container(
-                    height: 2000,
-                    color: Colors.red,
-                  )
+                  const HomeInfo(),
+                  SizedBox(
+                    height: headerHeight,
+                    key: homeBloc.aboutKey,
+                  ),
+                  const AboutSection(),
                 ],
               ),
             ),

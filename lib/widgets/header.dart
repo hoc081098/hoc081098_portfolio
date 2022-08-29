@@ -27,6 +27,18 @@ class HeaderItem {
     required this.iconData,
     required this.onTap,
   });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is HeaderItem &&
+          runtimeType == other.runtimeType &&
+          title == other.title &&
+          iconData == other.iconData &&
+          onTap == other.onTap;
+
+  @override
+  int get hashCode => title.hashCode ^ iconData.hashCode ^ onTap.hashCode;
 }
 
 class Header extends StatelessWidget {

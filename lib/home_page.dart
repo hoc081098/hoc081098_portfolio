@@ -76,7 +76,6 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Positioned.fill(
             child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

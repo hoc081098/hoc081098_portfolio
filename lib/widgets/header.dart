@@ -116,8 +116,7 @@ class _MobileHeader extends StatelessWidget {
           children: [
             const _HeaderLogo(),
             const SizedBox(width: 16.0),
-            const _HeaderName(),
-            const Spacer(),
+            const Expanded(child: _HeaderName()),
             GestureDetector(
               onTap: () =>
                   Globals.shared.scaffoldKey.currentState?.openEndDrawer(),

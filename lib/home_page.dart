@@ -32,16 +32,6 @@ class _MyHomePageState extends State<MyHomePage> with DisposeBagMixin {
         .debug(identifier: 'headerHeight', log: debugPrint)
         .collect()
         .disposedBy(bag);
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final double headerHeight = ScreenHelper.isDesktop(context)
-          ? 100
-          : ScreenHelper.isTablet(context)
-              ? 100
-              : 90;
-
-      headerHeightS.add(headerHeight);
-    });
   }
 
   @override

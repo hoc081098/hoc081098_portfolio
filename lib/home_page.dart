@@ -17,6 +17,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final homeBloc = context.get<HomeBloc>();
+
     return Scaffold(
       key: Globals.shared.scaffoldKey,
       endDrawer: Drawer(
@@ -38,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         scaffoldState.isEndDrawerOpen) {
                       Navigator.of(context).pop();
                       headerItem.onTap();
-                      context.get<HomeBloc>().scrollTo(headerItem);
+                      homeBloc.scrollTo(headerItem);
                     }
                   },
                   leading: Icon(
@@ -63,42 +65,40 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      body: _buildPage(),
-    );
-  }
-
-  Widget _buildPage() {
-    final homeBloc = context.get<HomeBloc>();
-
-    return Stack(
-      children: [
-        ScrollConfiguration(
-          behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: ScreenHelper.isDesktop(context)
-                      ? 100
-                      : ScreenHelper.isTablet(context)
-                          ? 100
-                          : 90,
-                ),
-                HomeInfo(
-                  key: homeBloc.homeKey,
-                ),
-                Container(
-                  height: 2000,
-                  color: Colors.red,
-                )
-              ],
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: ScreenHelper.isDesktop(context)
+                        ? 100
+                        : ScreenHelper.isTablet(context)
+                            ? 100
+                            : 90,
+                  ),
+                  HomeInfo(
+                    key: homeBloc.homeKey,
+                  ),
+                  Container(
+                    height: 2000,
+                    color: Colors.red,
+                  )
+                ],
+              ),
             ),
           ),
-        ),
-        const Header(),
-      ],
+          const Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Header(),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -190,7 +190,11 @@ class _HeaderRow extends StatelessWidget {
                 : MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: Container(
-                      margin: const EdgeInsets.only(right: 20.0),
+                      margin: EdgeInsets.only(
+                        right: ResponsiveWrapper.of(context).isDesktop
+                            ? 20.0
+                            : 15.0,
+                      ),
                       child: GestureDetector(
                         onTap: () {
                           item.onTap();

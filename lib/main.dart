@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
       stream: context.get<ThemeBloc>().themeMode$,
       builder: (context, mode) {
         return MaterialApp(
-          title: 'Flutter Demo',
+          title: 'hoc081098.dev',
           theme: mode == ThemeMode.dark ? darkTheme : lightTheme,
           builder: (context, widget) => ResponsiveWrapper.builder(
             ClampingScrollWrapper.builder(context, widget!),

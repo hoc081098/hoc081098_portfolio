@@ -31,7 +31,7 @@ class Technology {
 const technologyLearned = <Technology>[
   Technology(name: 'Android', logo: 'assets/images/technology/android.png'),
   Technology(name: 'Flutter', logo: 'assets/images/technology/flutter.png'),
-  Technology(name: 'iOS', logo: 'assets/images/technology/ios.png'),
+  Technology(name: 'iOS', logo: 'assets/images/technology/apple.png'),
   Technology(name: 'Kotlin', logo: 'assets/images/technology/kotlin.png'),
   Technology(name: 'Swift', logo: 'assets/images/technology/swift.png'),
   Technology(name: 'Dart', logo: 'assets/images/technology/dart.png'),

@@ -8,6 +8,35 @@ import 'package:hoc081098_portfolio/utils/screen_helper.dart';
 import 'package:hoc081098_portfolio/utils/utils.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
+class SocialData {
+  final String assetImagePath;
+  final String url;
+
+  const SocialData({
+    required this.assetImagePath,
+    required this.url,
+  });
+}
+
+const socialLoginItems = <SocialData>[
+  SocialData(
+    assetImagePath: 'assets/images/social/email.png',
+    url: 'mailto:hoc081098@gmail.com',
+  ),
+  SocialData(
+    assetImagePath: 'assets/images/social/linkedin-logo.png',
+    url: linkedInUrl,
+  ),
+  SocialData(
+    assetImagePath: 'assets/images/social/github.png',
+    url: githubUrl,
+  ),
+  SocialData(
+    assetImagePath: 'assets/images/social/medium.png',
+    url: mediumUrl,
+  ),
+];
+
 class HomeInfo extends StatelessWidget {
   const HomeInfo({super.key});
 
@@ -23,7 +52,7 @@ class HomeInfo extends StatelessWidget {
         height: height,
         child: ScreenHelper(
           tablet: () => const _TabletHomeInfo(),
-          mobile: () => throw UnimplementedError(),
+          mobile: () => const _MobileHomeInfo(),
           desktop: () => const _DesktopHomeInfo(),
         ),
       ),
@@ -31,8 +60,28 @@ class HomeInfo extends StatelessWidget {
   }
 }
 
+class _MobileHomeInfo extends StatelessWidget {
+  const _MobileHomeInfo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      constraints: BoxConstraints(
+        maxWidth: getMobileMaxWidth(context),
+      ),
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: const Center(
+        child: _NameInfo(
+          isMobile: true,
+        ),
+      ),
+    );
+  }
+}
+
 class _DesktopHomeInfo extends StatelessWidget {
-  const _DesktopHomeInfo({Key? key}) : super(key: key);
+  const _DesktopHomeInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +93,9 @@ class _DesktopHomeInfo extends StatelessWidget {
         child: Row(
           children: [
             const Expanded(
-              child: _NameInfo(),
+              child: _NameInfo(isMobile: false),
             ),
+            const SizedBox(width: 10),
             Expanded(
               child: SvgPicture.asset(
                 'assets/svg/guy.svg',
@@ -72,8 +122,9 @@ class _TabletHomeInfo extends StatelessWidget {
         child: Row(
           children: [
             const Expanded(
-              child: _NameInfo(),
+              child: _NameInfo(isMobile: false),
             ),
+            const SizedBox(width: 10),
             Expanded(
               child: SvgPicture.asset(
                 'assets/svg/guy.svg',
@@ -88,7 +139,9 @@ class _TabletHomeInfo extends StatelessWidget {
 }
 
 class _NameInfo extends StatelessWidget {
-  const _NameInfo({super.key});
+  final bool isMobile;
+
+  const _NameInfo({super.key, required this.isMobile});
 
   @override
   Widget build(BuildContext context) {
@@ -99,11 +152,13 @@ class _NameInfo extends StatelessWidget {
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+              crossAxisAlignment: isMobile
+                  ? CrossAxisAlignment.center
+                  : CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'Mobile Application Developer',
+                  'Mobile Developer',
                   style: GoogleFonts.josefinSans(
                     color: Theme.of(context).primaryColor,
                     fontWeight: FontWeight.w900,
@@ -117,18 +172,19 @@ class _NameInfo extends StatelessWidget {
                 Text(
                   'Petrus Nguyễn Thái Học'.toUpperCase(),
                   style: GoogleFonts.josefinSans(
-                    fontSize: 36.0,
+                    fontSize: 36.0 * (isMobile ? 0.7 : 1.0),
                     fontWeight: FontWeight.w900,
                     height: 1.3,
                     letterSpacing: 2.3,
                     color: Theme.of(context).colorScheme.onBackground,
                   ),
+                  textAlign: isMobile ? TextAlign.center : TextAlign.left,
                 ),
                 const SizedBox(
-                  height: 10.0,
+                  height: 15.0,
                 ),
                 const Text(
-                  'Full-stack mobile software engineer, ',
+                  'Full-stack mobile software engineer',
                   style: TextStyle(
                     color: kCaptionColor,
                     fontSize: 15.0,
@@ -139,6 +195,9 @@ class _NameInfo extends StatelessWidget {
                   height: 10,
                 ),
                 Row(
+                  mainAxisAlignment: isMobile
+                      ? MainAxisAlignment.center
+                      : MainAxisAlignment.start,
                   children: const [
                     Icon(
                       Icons.location_on,
@@ -162,6 +221,9 @@ class _NameInfo extends StatelessWidget {
                   height: 25.0,
                 ),
                 Row(
+                  mainAxisAlignment: isMobile
+                      ? MainAxisAlignment.center
+                      : MainAxisAlignment.start,
                   children: [
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
@@ -188,6 +250,35 @@ class _NameInfo extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(
+                  height: 25.0,
+                ),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: Row(
+                    mainAxisAlignment: isMobile
+                        ? MainAxisAlignment.center
+                        : MainAxisAlignment.end,
+                    crossAxisAlignment: isMobile
+                        ? CrossAxisAlignment.center
+                        : CrossAxisAlignment.end,
+                    children: [
+                      for (final e in socialLoginItems)
+                        InkWell(
+                          onTap: () => openUrl(e.url),
+                          child: Container(
+                            width: 36,
+                            height: 36,
+                            margin: const EdgeInsets.all(10),
+                            child: Image.asset(
+                              e.assetImagePath,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
+                        )
+                    ],
+                  ),
+                )
               ],
             ),
           ),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:flutter_provider/flutter_provider.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hoc081098_portfolio/home_bloc.dart';
 import 'package:hoc081098_portfolio/home_page.dart';
 import 'package:hoc081098_portfolio/theme_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -37,16 +38,19 @@ final darkTheme = ThemeData(
       foregroundColor: MaterialStateProperty.all(Colors.black),
     ),
   ),
-  textTheme: GoogleFonts.notoSansTextTheme(),
+  textTheme: GoogleFonts.notoSansTextTheme(ThemeData.dark().textTheme),
 );
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   setUrlStrategy(PathUrlStrategy());
   runApp(
-    BlocProvider<ThemeBloc>(
-      initBloc: (context) => ThemeBloc(),
-      child: const MyApp(),
+    BlocProvider<HomeBloc>(
+      initBloc: (context) => HomeBloc(),
+      child: BlocProvider<ThemeBloc>(
+        initBloc: (context) => ThemeBloc(),
+        child: const MyApp(),
+      ),
     ),
   );
 }

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
+import 'package:flutter_provider/flutter_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hoc081098_portfolio/main.dart';
-import 'package:hoc081098_portfolio/theme_bloc.dart';
+import 'package:hoc081098_portfolio/home_bloc.dart';
 import 'package:hoc081098_portfolio/utils/globals.dart';
 import 'package:hoc081098_portfolio/utils/screen_helper.dart';
-import 'package:hoc081098_portfolio/widgets/switch.dart';
+import 'package:hoc081098_portfolio/widgets/theme_switcher.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 final headerItems = <HeaderItem>[
@@ -176,16 +175,7 @@ class _HeaderRow extends StatelessWidget {
         children: [
           for (final item in headerItems)
             item.title == 'Theme'
-                ? RxStreamBuilder<ThemeMode>(
-                    stream: BlocProvider.of<ThemeBloc>(context).themeMode$,
-                    builder: (context, mode) {
-                      return CustomSwitch(
-                        value: mode == ThemeMode.dark,
-                        onChanged:
-                            BlocProvider.of<ThemeBloc>(context).changeThemeMode,
-                      );
-                    },
-                  )
+                ? const ThemeSwitcher()
                 : MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: Container(
@@ -193,12 +183,13 @@ class _HeaderRow extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () {
                           item.onTap();
+                          context.get<HomeBloc>().scrollTo(item);
                         },
                         child: Text(
                           item.title,
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
-                            fontSize: 16.0,
+                            fontSize: 15.0,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 2,
                           ),

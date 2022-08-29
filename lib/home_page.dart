@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_provider/flutter_provider.dart';
+import 'package:hoc081098_portfolio/home_bloc.dart';
 import 'package:hoc081098_portfolio/utils/globals.dart';
 import 'package:hoc081098_portfolio/utils/screen_helper.dart';
 import 'package:hoc081098_portfolio/widgets/header.dart';
 import 'package:hoc081098_portfolio/widgets/home_info.dart';
+import 'package:hoc081098_portfolio/widgets/theme_switcher.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -25,15 +28,29 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             child: ListView.separated(
               itemBuilder: (BuildContext context, int index) {
+                final headerItem = headerItems[index];
+
                 return ListTile(
-                  onTap: () {},
+                  onTap: () {
+                    final scaffoldState =
+                        Globals.shared.scaffoldKey.currentState;
+                    if (scaffoldState != null &&
+                        scaffoldState.isEndDrawerOpen) {
+                      Navigator.of(context).pop();
+                      headerItem.onTap();
+                      context.get<HomeBloc>().scrollTo(headerItem);
+                    }
+                  },
                   leading: Icon(
-                    headerItems[index].iconData,
+                    headerItem.iconData,
                   ),
                   title: Text(
-                    headerItems[index].title,
+                    headerItem.title,
                     style: const TextStyle(),
                   ),
+                  trailing: headerItem.title == 'Theme'
+                      ? const ThemeSwitcher()
+                      : null,
                 );
               },
               separatorBuilder: (BuildContext context, int index) {
@@ -51,6 +68,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildPage() {
+    final homeBloc = context.get<HomeBloc>();
+
     return Stack(
       children: [
         ScrollConfiguration(
@@ -67,7 +86,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           ? 100
                           : 90,
                 ),
-                const HomeInfo(),
+                HomeInfo(
+                  key: homeBloc.homeKey,
+                ),
                 Container(
                   height: 2000,
                   color: Colors.red,

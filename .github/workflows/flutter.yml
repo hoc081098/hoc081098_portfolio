@@ -31,7 +31,7 @@ jobs:
           flutter pub get
 
       - name: Build
-        run: flutter build web --release --base-href="/hoc081098_portfolio/"
+        run: flutter build web --release --base-href="/profile/"
         
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3.8.0

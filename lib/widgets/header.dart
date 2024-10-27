@@ -75,7 +75,7 @@ class _HeaderLogo extends StatelessWidget {
       cursor: SystemMouseCursors.click,
       child: ClipOval(
         child: Image.asset(
-          'assets/images/logo.jpeg',
+          'assets/images/avatar.png',
           height: 64,
         ),
       ),

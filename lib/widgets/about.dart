@@ -155,9 +155,20 @@ class _AboutSection extends StatelessWidget {
                     ScreenHelper.isTablet(context))
                   Expanded(
                     flex: maxWidth > 720.0 ? 1 : 0,
-                    child: SvgPicture.asset(
-                      'assets/svg/person.svg',
-                      width: maxWidth > 720.0 ? null : 350.0,
+                    child: Center(
+                      child: SizedBox(
+                        width: 256,
+                        height: 256,
+                        child: ClipOval(
+                          clipBehavior: Clip.antiAlias,
+                          child: Image.asset(
+                            'assets/images/avatar.png',
+                            width: 256,
+                            height: 256,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
               ],

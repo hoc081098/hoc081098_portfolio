@@ -1,11 +1,11 @@
 {
-    "name": "hoc081098_portfolio",
-    "short_name": "hoc081098_portfolio",
+    "name": "profile",
+    "short_name": "profile",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "hoc081098_portfolio",
+    "description": "profile",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

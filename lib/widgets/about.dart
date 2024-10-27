@@ -8,15 +8,14 @@ import 'package:hoc081098_portfolio/utils/screen_helper.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 const aboutTitle =
-    "I'm Petrus Nguyễn Thái Học, a Android, Flutter, iOS Developer, Technical blog writer and Open source lover";
+    "I'm Petrus Nguyễn Thái Học – a senior Android, Flutter, and iOS Developer, technical writer, and open-source enthusiast.";
 
 const aboutDetails =
-    'I have done my Information Technology graduation at Đà Nẵng University of Science and Technology. '
-    'I have been developing Mobile Apps for more than 4+ years now. '
-    'I have worked as a Team and as an Individual in various organization and launched the apps in Play Store. '
-    'In my free time I use to write Technical Blog in Medium and contribute to Open source community on Github. '
-    'Always love to learn new technologies and to succeed in an environment of growth and excellence'
-    ' and earn a job which provides me job satisfaction and self-development and help me achieve personal as well as organisational goals.';
+    'I graduated with a degree in Information Technology from Đà Nẵng University of Science and Technology. '
+    'With over 7 years of experience in mobile app development, I’ve contributed to diverse projects, both as part of a team and individually, delivering successful apps to the Play Store. '
+    'In my spare time, I enjoy writing technical blogs on Medium and actively contributing to the open-source community on GitHub. '
+    'I’m passionate about continuous learning, embracing new technologies, and working in environments that foster growth and excellence. '
+    'My goal is to find a role that aligns with my passion, drives personal and professional development, and contributes to both my own and my organization’s success.';
 
 class Technology {
   final String name;

@@ -176,7 +176,7 @@ class _NameInfo extends StatelessWidget {
                     fontWeight: FontWeight.w900,
                     height: 1.3,
                     letterSpacing: 2.3,
-                    color: Theme.of(context).colorScheme.onBackground,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                   textAlign: isMobile ? TextAlign.center : TextAlign.left,
                 ),
@@ -184,7 +184,7 @@ class _NameInfo extends StatelessWidget {
                   height: 15.0,
                 ),
                 const Text(
-                  'Full-stack mobile software engineer',
+                  'Full-stack software engineer',
                   style: TextStyle(
                     color: kCaptionColor,
                     fontSize: 15.0,

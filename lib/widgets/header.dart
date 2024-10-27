@@ -104,7 +104,7 @@ class _HeaderName extends StatelessWidget {
               style: GoogleFonts.josefinSans(
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
-                color: Theme.of(context).colorScheme.onBackground,
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
           ],
@@ -156,9 +156,9 @@ class _TabletHeader extends StatelessWidget {
           horizontal: ScreenHelper.isDesktop(context) ? 24 : 16.0,
           vertical: 16.0,
         ),
-        child: Row(
+        child: const Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
+          children: [
             _HeaderLogo(),
             SizedBox(width: 16.0),
             _HeaderName(),
